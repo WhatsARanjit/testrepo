@@ -37,7 +37,7 @@ File { backup => 'main' }
 # specified in the console for that node.
 
 node 'dummy' {
-  notify { 'I do not exist': }
+  notify { 'I do not exist!': }
 }
 
 node default {
