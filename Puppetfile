@@ -1,3 +1,4 @@
+# Comment 1
 forge "forge.puppetlabs.com"
 
 mod 'puppetlabs/apache'
