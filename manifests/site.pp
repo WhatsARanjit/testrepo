@@ -25,6 +25,7 @@ filebucket { 'main':
 
 # Make filebucket 'main' the default backup location for all File resources:
 File { backup => 'main' }
+Package { allow_virtual => true }
 
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
