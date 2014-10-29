@@ -1,7 +1,8 @@
-# Comment 1
 forge "forge.puppetlabs.com"
 
 mod 'puppetlabs/apache'
 mod 'puppetlabs/mysql'
 
-# Test comment - dev
+mod 'test_module',
+  git: => 'https://github.com/WhatsARanjit/test_module',
+  :branch => 'development'
