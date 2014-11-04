@@ -7,4 +7,4 @@ mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
   :branch => 'development'
 
-# Test comment hello
+# Test comment
