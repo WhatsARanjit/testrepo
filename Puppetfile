@@ -5,6 +5,6 @@ mod 'puppetlabs/mysql'
 
 mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
-  :branch => 'development'
+  :branch => 'blah'
 
-# Test comment hello world
+# Test comment hello
