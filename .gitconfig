@@ -1,3 +1,6 @@
 [filter "gitignore"]
   clean = "sed '/#gitignore$/'d"
   smudge = cat
+[filter "branchme"]
+  clean = "branch=$(git branch --no-color | cut -d ' ' -f2); sed -e \"s/branch =>.*/branch => '${branch}'/g\"
+  smudge = cat
