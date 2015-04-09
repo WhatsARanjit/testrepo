@@ -8,5 +8,5 @@ mod 'vim',
 
 mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
-  :commit => 'fdd187532384256f933f053b785c69088d9856e4'
+  :commit => '6b116efd22f6b4e40e0f66e2b1a814b5e9917336'
 
