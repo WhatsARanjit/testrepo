@@ -19,7 +19,7 @@
 
 # Define filebucket 'main':
 filebucket { 'main':
-  server => 'asterix.puppetlabs.vm',
+  server => 'master.puppetlabs.vm',
   path   => false,
 }
 
