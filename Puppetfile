@@ -8,5 +8,5 @@ mod 'vim',
 
 mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
-  :ref => 'new_feature'
+  :tag => '0.1.2'
 
