@@ -19,7 +19,7 @@
 
 # Define filebucket 'main':
 filebucket { 'main':
-  server => 'master.puppetlabs.vm',
+  server => $::settings::server,
   path   => false,
 }
 
