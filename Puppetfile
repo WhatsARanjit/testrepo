@@ -9,3 +9,7 @@ mod 'vim',
 mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
   :tag => '0.1.3'
+
+mod 'canary',
+  :git => 'https://github.com/WhatsARanjit/puppet-canary_group.git',
+  :ref => 'master'
