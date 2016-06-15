@@ -17,3 +17,7 @@ mod 'test_module',
 mod 'canary',
   :git => 'https://github.com/WhatsARanjit/puppet-canary_group.git',
   :ref => 'master'
+
+mod 'myapp',
+  :git => 'https://github.com/WhatsARanjit/puppet-app_orch_demo.git',
+  :ref => 'master'

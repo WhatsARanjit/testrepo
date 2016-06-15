@@ -10,12 +10,11 @@ node default {
 }
 
 site {
-  canary::on { 'East Coast':
-    test_env  => 'canary_test',
-    test_node => 'node1.whatsaranjit.com',
+  myapp { 'PVD':
+    port => '8081',
     nodes => {
-      Node['puppet2016.1.1.puppetlabs.vm'] => Canary::Group['East Coast'],
-      Node['node1.whatsaranjit.com']       => Canary::Node['East Coast'],
+      Node['node1.whatsaranjit.com'] => MyApp::Web['PVD'],
+      Node['node2.whatsaranjit.com'] => MyApp::App['PVD'],
     }
   }
 }
