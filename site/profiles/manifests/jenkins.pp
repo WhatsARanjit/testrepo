@@ -5,7 +5,7 @@ class profiles::jenkins {
     '/home/tomcat/.jenkins',
     ]:
     ensure => directory,
-    user   => $tomcat::user,
+    owner  => $tomcat::user,
     group  => $tomcat::group,
   }
 
