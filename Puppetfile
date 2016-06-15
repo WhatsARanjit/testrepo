@@ -1,9 +1,9 @@
 forge "forge.puppetlabs.com"
 
 mod 'puppetlabs/apache', '1.10.1'
-mod 'puppetlabs/concat', '>= 2.4.0'
-mod 'puppetlabs/stdlib', '>= 1.1.1'
-mod 'nanliu/staging', '>= 0.4.1'
+mod 'puppetlabs/concat', '2.4.0'
+mod 'puppetlabs/stdlib', '1.1.1'
+mod 'nanliu/staging', '0.4.1'
 mod 'puppetlabs/java', '1.6.0'
 mod 'puppetlabs/mysql'
 
