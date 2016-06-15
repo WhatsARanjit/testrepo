@@ -1,6 +1,7 @@
 forge "forge.puppetlabs.com"
 
 mod 'puppetlabs/apache', '1.10.0'
+mod 'puppetlabs/tomcat', '1.5.0'
 mod 'puppetlabs/concat', '2.1.0'
 mod 'puppetlabs/stdlib', '4.12.0'
 mod 'nanliu/staging', '1.0.3'
