@@ -10,7 +10,7 @@ class profiles::jenkins {
   }
 
   tomcat::war { 'jenkins.war':
-    catalina_base => '/opt/tomcat8',
+    catalina_base => '/opt/tomcat',
     war_source    => 'http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war',
   }
 
