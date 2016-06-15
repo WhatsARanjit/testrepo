@@ -7,6 +7,13 @@ File { backup => 'main' }
 Package { allow_virtual => true }
 
 node default {
+  ini_setting { 'use_cached_catalog':
+    ensure  => present,
+    path    => $settings::config,
+    section => 'agent',
+    setting => 'use_cached_catalog',
+    value   => 'true',
+  }
 }
 
 site {
