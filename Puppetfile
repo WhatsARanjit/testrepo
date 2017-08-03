@@ -9,7 +9,8 @@ mod 'puppetlabs/java', '1.6.0'
 mod 'puppetlabs/mysql'
 
 mod 'vim',
-  :git => 'https://github.com/WhatsARanjit/puppet-vim.git'
+  :git => 'https://github.com/WhatsARanjit/puppet-vim.git',
+  :ref => 'master'
 
 mod 'data_fragments',
   :git => 'https://github.com/WhatsARanjit/puppet-data_fragments'
