@@ -11,6 +11,9 @@ mod 'puppetlabs/mysql'
 mod 'vim',
   :git => 'https://github.com/WhatsARanjit/puppet-vim.git'
 
+mod 'data_fragments',
+  :git => 'https://github.com/WhatsARanjit/puppet-data_fragments'
+
 mod 'test_module',
   :git => 'https://github.com/WhatsARanjit/test_module',
   :tag => '0.1.0'
