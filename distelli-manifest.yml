@@ -1,0 +1,26 @@
+---
+WhatsARanjit/control-repo:
+  Build:
+    - echo "Building..."
+  PkgInclude:
+    - '*'
+  PkgExlude:
+    - README.md
+    - README.markdown
+    - LICENSE
+    - Rakefile
+    - Gemfile
+  PostInstall:
+    - echo "Deploying ${DISTELLI_RELBRANCH}"
+    - set -x
+    - PATH=/opt/puppetlabs/puppet/bin:$PATH
+    - # Need to sudo to get configs from root, not distelli user
+    - environmentpath=$(sudo /opt/puppetlabs/puppet/bin/puppet config print environmentpath)
+    - sudo mkdir -p $environmentpath/$DISTELLI_RELBRANCH
+    - sudo cp -R * $environmentpath/$DISTELLI_RELBRANCH
+    - >
+      sudo curl -s -I -X DELETE
+      --cert   $(sudo /opt/puppetlabs/puppet/bin/puppet config print hostcert)
+      --key    $(sudo /opt/puppetlabs/puppet/bin/puppet config print hostprivkey)
+      --cacert $(sudo /opt/puppetlabs/puppet/bin/puppet config print localcacert)
+      "https://$(sudo /opt/puppetlabs/puppet/bin/puppet config print server):8140/puppet-admin-api/v1/environment-cache?environment=${DISTELLI_RELBRANCH}"
