@@ -5,12 +5,15 @@ WhatsARanjit/control-repo:
     - mv .git git_history
   PkgInclude:
     - '*'
-  PkgExlude:
-    - README.md
-    - README.markdown
-    - LICENSE
-    - Rakefile
+  PkgExclude:
+    - Dockerfile
     - Gemfile
+    - Jenkinsfile
+    - LICENSE
+    - README.markdown
+    - README.md
+    - Rakefile
+    - Vagrantfile
   PostInstall:
     - echo "Deploying ${DISTELLI_RELBRANCH}"
     - PATH=/opt/puppetlabs/puppet/bin:$PATH
@@ -20,6 +23,7 @@ WhatsARanjit/control-repo:
     - sudo cp -R * $environment_staging/environments/$DISTELLI_RELBRANCH
     - sudo chown -R pe-puppet:pe-puppet /etc/puppetlabs/code-staging
     - # Need to sudo to get configs from root, not distelli user
+    - server=$(sudo /opt/puppetlabs/puppet/bin/puppet config print server)
     - # Certs
     - cert=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostcert)
     - key=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostprivkey)
@@ -32,11 +36,11 @@ WhatsARanjit/control-repo:
       --cert   $cert \
       --key    $key \
       --cacert $cacert \
-      "https://$(sudo /opt/puppetlabs/puppet/bin/puppet config print server):8140/file-sync/v1/commit"
+      "https://${server}:8140/file-sync/v1/commit"
     - # Clear cache
     - |
       sudo curl -I -X DELETE \
       --cert   $cert \
       --key    $key \
       --cacert $cacert \
-      "https://$(sudo /opt/puppetlabs/puppet/bin/puppet config print server):8140/puppet-admin-api/v1/environment-cache?environment=${DISTELLI_RELBRANCH}"
+      "https://${server}:8140/puppet-admin-api/v1/environment-cache?environment=${DISTELLI_RELBRANCH}"
