@@ -2,6 +2,7 @@
 WhatsARanjit/control-repo:
   Build:
     - echo "Building..."
+    - mv .git git_history
   PkgInclude:
     - '*'
   PkgExlude:
@@ -12,15 +13,30 @@ WhatsARanjit/control-repo:
     - Gemfile
   PostInstall:
     - echo "Deploying ${DISTELLI_RELBRANCH}"
-    - set -x
     - PATH=/opt/puppetlabs/puppet/bin:$PATH
+    - mv git_history .git
+    - environment_staging='/etc/puppetlabs/code-staging'
+    - sudo mkdir -p $environment_staging/environments/$DISTELLI_RELBRANCH
+    - sudo cp -R * $environment_staging/environments/$DISTELLI_RELBRANCH
+    - sudo chown -R pe-puppet:pe-puppet /etc/puppetlabs/code-staging
     - # Need to sudo to get configs from root, not distelli user
-    - environmentpath=$(sudo /opt/puppetlabs/puppet/bin/puppet config print environmentpath)
-    - sudo mkdir -p $environmentpath/$DISTELLI_RELBRANCH
-    - sudo cp -R * $environmentpath/$DISTELLI_RELBRANCH
-    - >
-      sudo curl -s -I -X DELETE
-      --cert   $(sudo /opt/puppetlabs/puppet/bin/puppet config print hostcert)
-      --key    $(sudo /opt/puppetlabs/puppet/bin/puppet config print hostprivkey)
-      --cacert $(sudo /opt/puppetlabs/puppet/bin/puppet config print localcacert)
+    - # Certs
+    - cert=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostcert)
+    - key=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostprivkey)
+    - cacert=$(sudo /opt/puppetlabs/puppet/bin/puppet config print localcacert)
+    - # Trigger file-sync
+    - |
+      sudo curl -X POST \
+      -H 'Content-Type: application/json' \
+      -d '{"commit-all": true}' \
+      --cert   $cert \
+      --key    $key \
+      --cacert $cacert \
+      "https://$(sudo /opt/puppetlabs/puppet/bin/puppet config print server):8140/file-sync/v1/commit"
+    - # Clear cache
+    - |
+      sudo curl -I -X DELETE \
+      --cert   $cert \
+      --key    $key \
+      --cacert $cacert \
       "https://$(sudo /opt/puppetlabs/puppet/bin/puppet config print server):8140/puppet-admin-api/v1/environment-cache?environment=${DISTELLI_RELBRANCH}"
