@@ -5,6 +5,7 @@ WhatsARanjit/control-repo:
     - 'rvm install ruby-2.1.0 || true'
     - rvm use 2.1.0
     - gem install r10k
+    - export PATH=$PATH:$HOME/.rbenv/bin
   Build:
     - echo "Building..."
     - mv .git git_history
