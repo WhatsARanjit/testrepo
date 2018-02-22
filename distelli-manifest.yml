@@ -9,6 +9,8 @@ WhatsARanjit/control-repo:
   Build:
     - echo "Building..."
     - mv .git git_history
+    - source ~/.rvm/scripts/rvm 
+    - rvm use 2.1.0
     - r10k puppetfile install -v
   PkgInclude:
     - '*'
@@ -29,13 +31,13 @@ WhatsARanjit/control-repo:
     - sudo mkdir -p $environment_staging/environments/$DISTELLI_RELBRANCH
     - sudo cp -R * $environment_staging/environments/$DISTELLI_RELBRANCH
     - sudo chown -R pe-puppet:pe-puppet /etc/puppetlabs/code-staging
-    - # Need to sudo to get configs from root, not distelli user
+    # Need to sudo to get configs from root, not distelli user
     - server=$(sudo /opt/puppetlabs/puppet/bin/puppet config print server)
-    - # Certs
+    # Certs
     - cert=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostcert)
     - key=$(sudo /opt/puppetlabs/puppet/bin/puppet config print hostprivkey)
     - cacert=$(sudo /opt/puppetlabs/puppet/bin/puppet config print localcacert)
-    - # Trigger file-sync
+    # Trigger file-sync
     - |
       sudo curl -X POST \
       -H 'Content-Type: application/json' \
@@ -44,7 +46,7 @@ WhatsARanjit/control-repo:
       --key    $key \
       --cacert $cacert \
       "https://${server}:8140/file-sync/v1/commit"
-    - # Clear cache
+    # Clear cache
     - |
       sudo curl -I -X DELETE \
       --cert   $cert \
