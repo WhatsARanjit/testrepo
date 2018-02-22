@@ -1,8 +1,14 @@
 ---
 WhatsARanjit/control-repo:
+  PreBuild:
+    - source ~/.rvm/scripts/rvm 
+    - rvm install ruby-2.1.0 || true 
+    - rvm use 2.1.0
+    - gem install r10k
   Build:
     - echo "Building..."
     - mv .git git_history
+    - r10k puppetfile install -v
   PkgInclude:
     - '*'
   PkgExclude:
