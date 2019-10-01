@@ -6,9 +6,9 @@ mod 'puppetlabs/concat', '2.1.0'
 mod 'puppetlabs/stdlib', '4.17.1'
 mod 'nanliu/staging', '1.0.3'
 mod 'puppetlabs/java', '1.6.0'
-mod 'puppetlabs/mysql'
-mod 'hunner/wordpress'
-mod 'danieldreier/puppet-autosign', '0.2.0'
+mod 'puppetlabs/mysql', '10.2.0'
+mod 'hunner/wordpress', '1.0.0'
+mod 'danieldreier-autosign', '0.2.0'
 
 mod 'vim',
   :git => 'https://github.com/WhatsARanjit/puppet-vim.git',
